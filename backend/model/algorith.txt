@@ -1,0 +1,12 @@
+// install service procedure
+- we need a variable to store a file(it contain queries to create tables)
+   - the name is queryfile = --dirName() + ''
+- we call a method to read the file asynchronously
+   - the method name is readFileSync(filename,'utf-8');
+- now we need a variable that store the wuery of a single table and leave the rest
+   - first it see if there is a comment if there is we pass
+   - second it looks the end of the query by using  comma.
+   - then push each query to a variable of an array.
+
+- finally by using forEach() method it executes each query found in the  array.
+   
