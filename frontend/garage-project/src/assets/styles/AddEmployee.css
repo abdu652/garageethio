@@ -1,0 +1,29 @@
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+body{
+   font-family: Arial, Helvetica, sans-serif;
+}
+.add-employee-form{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+   gap: 15px;
+   margin-left: 50px;
+}
+
+.add-employee-form input, .register-btn{
+   padding: 10px;
+   width: 400px;
+   border:1px solid #e0dddd;
+   border-radius: 6px;
+   font-style: italic;
+}
+
+.register-btn{
+   background: rgba(209, 19, 19, 0.822);
+   color: white;
+}

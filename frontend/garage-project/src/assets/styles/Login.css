@@ -1,0 +1,30 @@
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+body{
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-form{
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+   margin-left: 300px;
+}
+
+.login-form input, .login-button{
+   width: 400px;
+   padding: 10px;
+   border: 1px solid #f1f1f1;
+   border-radius: 5px;
+   color: #f1f1f1;
+   font-size: 17px;
+   font-style: italic;
+}
+
+.login-button{
+   color: white;
+   background: rgba(209, 19, 19, 0.822);
+}
