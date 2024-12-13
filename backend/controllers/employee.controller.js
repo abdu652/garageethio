@@ -1,16 +1,35 @@
-import {fetchEmployee} from "../config/client.config.js";
-import {db} from "../config/connect.config.js";
-import addEmployeeService from "../services/employee.service.js";
-async function addEmployee(req,res){
-   const {email} = req.body;
-   const employeeInfo = await fetchEmployee(email);
-   if(employeeInfo.data.length >= 1){
-      return res.status(400).json({
-         status:"failed",
-         message:"Employee already exists",
-         data:""
-      })
-   }
-   addEmployeeService(req,res,db);      
-}   
-export default addEmployee;
+import {checkEmployeeExists,createEmployee} from '../services/employee.service.js';
+async function employeeController(req,res){
+  try{
+    const { email } = req.body;
+   const employeeExists = await checkEmployeeExists(email);
+   if (employeeExists) {
+      res.status(200).json({
+         success: "false",
+         message: "employee already exists",
+         path: "employee.controller",
+      });
+   } 
+   else {
+      const employeeData = req.body;
+      const result = await createEmployee(employeeData);
+      if (result) {
+         console.log("result employee created in employee.controller",result);
+         res.status(200).json({
+            success: "true",
+            message: "you are registered succesfully.",
+         });
+      } 
+		}
+  }catch(err){
+   
+   res.status(500).json({
+      success: "false",
+      message: "something went wrong!",
+   });
+			
+   console.log(err)
+}
+}
+
+export default employeeController;

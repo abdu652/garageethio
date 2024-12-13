@@ -1,28 +1,40 @@
-async function addEmployee(req,res,db){
+import employeeQuery from '../config/db.config.js';
+import bcrypt from 'bcrypt';
+export async function checkEmployeeExists(email) {
    try{
-      const {name,email,sup,id} = req.body;
-   
-      if(!name || !email || !sup|| !id){
-         return res.status(400).json({
-            staus:"failed",
-            message:"please fill all the fields",
-            data:"",
-         });
+      const query = 'select * from employee where employee_email = ?';
+      const employee = await employeeQuery(query,[email]);
+      if(employee.length > 0){
+         return true;
       }
-      const addEmployee = "insert into employee(id,name,sup,email) values(?,?,?,?)";
-      const result = await db.execute(addEmployee,[id,name,sup,email]);
-      return res.status(200).json({
-         status:"success",
-         message:"employee added successfully",
-         data:result
-      });
-   }               
-   catch(err){
-      res.status(500).json({
-         status:"failed",
-         message:"Internal Server Error",
-         data:""
-      });
+      return false; 
+   }catch(err){
+      console.log(err);
    }
 }
-export default addEmployee;
+
+export async function createEmployee(employeeData){
+   try{
+      const {email, first_name, last_name, phone_number,password} = employeeData;
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password,salt);
+   if(!email|| !first_name || !last_name || !phone_number || !password){
+      throw new Error("All fields are required");
+   }
+   
+      const query1 = 'insert into employee(employee_email,active_employee) values(?,?)';
+      const rows = await employeeQuery(query1,[email,1]);
+      if(rows.affectedRows !== 1){
+         return false;
+      }
+
+      const id = rows.insertId;
+      const query2 = 'insert into employee_info(employee_id,employee_first_name,employee_last_name,employee_phone_number) values(?,?,?,?)';
+      const rows2 = await employeeQuery(query2,[id,first_name,last_name,phone_number]);
+      const query3 = 'insert into employee_pass(employee_id,employee_password) values(?,?)';
+      const rows3 = await employeeQuery(query3,[id,hashedPassword]);
+      return true;
+   }catch(err){
+      console.log("error occurs in employee.service ffile createEmployeefunction ",err.message);
+   }
+}

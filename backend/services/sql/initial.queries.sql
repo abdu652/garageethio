@@ -52,10 +52,27 @@ CREATE TABLE IF NOT EXISTS `employee_info` (
 ) ENGINE = InnoDB;
 
 
-CREATE Table if EXISTS `employee_pass`(
+CREATE Table if NOT EXISTS `employee_pass`(
    `employee_pass_id` int(11) NOT NULL  AUTO_INCREMENT,
    `employee_id` int(11) NOT NULL,
    `employee_password_hashed` VARCHAR(255) NOT NULL,
    PRIMARY KEY(employee_pass_id),
    FOREIGN KEY(employee_id) REFERENCES employee(employee_id)
 )ENGINE=InnoDB;
+
+
+
+
+
+CREATE TABLE IF NOT EXISTS `employee` (
+   `employee_id` INT(11) NOT NULL AUTO_INCREMENT,
+   `employee_first_name` VARCHAR(255) NOT NULL,
+   `employee_last_name` VARCHAR(255) NOT NULL,
+   `employee_phone_number` VARCHAR(255) NOT NULL,
+   `employee_password` VARCHAR(255) NOT NULL,
+   `active_employee` INT(11) NOT NULL,
+   `added_date` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   PRIMARY KEY (`employee_id`)
+) ENGINE = InnoDB;
+
+alter table employee_pass change column employee_password_hashed employee_password VARCHAR(255) NOT NULL;
