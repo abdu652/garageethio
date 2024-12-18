@@ -1,5 +1,3 @@
-
-
 async function Login(loginForm){
 
    try{
@@ -12,17 +10,26 @@ async function Login(loginForm){
       });
 
       if (!response.ok) {
-        return {message:response.statusText}
+         console.log(response)
+         return {
+            message:response.statusText,
+            isAuthenticated:false
+         }
       } 
       const result = await response.json();
       const {isAuthenticated, token} = result;
       if(isAuthenticated){
-         token && localStorage.setItem("employee",JSON.stringify(token));
+         localStorage.setItem("employee",JSON.stringify(token))
          return result;            
+      }else{
+         return result
       }
    }      
    catch (err) {
-      return {message:err.message}
+      return {
+         message:err.message,
+         isAuthenticated:false
+      }
    }
 }
 export default Login;

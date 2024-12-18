@@ -20,10 +20,10 @@ async function loginService(user){
       const hashedPassword = password_row[0].employee_password;
       const isMatch = await bcrypt.compare(employee_password,hashedPassword);
       if(!isMatch){
-         return {
+         return ({
 				isAuthenticated: false,
-				message: "Incorrect password", 
-			};
+				message: "Incorrect password"
+			})
       }
       const nameQuery = 'select employee_first_name from employee_info where employee_id =?';
       const roleQuery = 'select company_role_id from employee_role where employee_id =?';
@@ -37,7 +37,6 @@ async function loginService(user){
          employee_first_name,
          employee_role
       }
-      console.log("employee role id:",employee_role)
       const token = jwt.sign(payload,jwtSecret);
       return {
          isAuthenticated:true,

@@ -25,19 +25,14 @@ function Login() {
 	async function handleSubmit(e) {
 		e.preventDefault();
 		try {
-			// Validate fields
 			if (!employee_email.trim() || !employee_password.trim()) {
 				setFieldMessage("Please fill in all fields.");
 				return;
 			}
-			console.log("hi")
+			// console.log("hi")
 			const result = await VerifyUser(loginForm);
-			const {isAuthenticated, message} = result;
-			console.log(result)
-			if(!isAuthenticated){
-				setFieldMessage(message);
-				return;
-			}
+			console.log("the response value is:",result)
+			const {message} = result;
 			setFieldMessage(message);
 		}
 		catch(err){
