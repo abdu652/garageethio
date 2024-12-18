@@ -26,13 +26,18 @@ async function loginService(user){
 			};
       }
       const nameQuery = 'select employee_first_name from employee_info where employee_id =?';
+      const roleQuery = 'select company_role_id from employee_role where employee_id =?';
       const nameRows =await query(nameQuery,[employee_id]);
+      const rolerows =await query(roleQuery,[employee_id]);
       const {employee_first_name} = nameRows[0];
+      const employee_role = rolerows[0].company_role_id;
       const jwtSecret = process.env.JWT_SECRET;
       const payload = {
          employee_id,
-         employee_first_name
+         employee_first_name,
+         employee_role
       }
+      console.log("employee role id:",employee_role)
       const token = jwt.sign(payload,jwtSecret);
       return {
          isAuthenticated:true,
