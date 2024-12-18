@@ -13,9 +13,10 @@ body{
    align-items: center;
    gap: 15px;
    margin-left: 50px;
+   margin-top: 110px;
 }
 
-.add-employee-form input, .register-btn{
+.add-employee-form input, .register-btn, .error-message, select{
    padding: 10px;
    width: 400px;
    border:1px solid #e0dddd;
@@ -26,4 +27,11 @@ body{
 .register-btn{
    background: rgba(209, 19, 19, 0.822);
    color: white;
+}
+.error-message{
+   background: green;
+   color: whitesmoke;
+   border: 1px solid #e0dddd;
+   border-radius: 5px;
+   font-style: italic;
 }

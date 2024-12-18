@@ -6,12 +6,6 @@ dotenv.config();
 async function loginService(user){
    try{
       const {employee_email, employee_password} = user;
-      if(!employee_email || !employee_password){
-         return {
-            isAuthenticated:false,
-            message:"please fill all fields.",
-         }
-      }
       const sql= 'select employee_id from employee where employee_email =?';
       const rows = await query(sql,[employee_email]);
       if(!rows.length){
@@ -27,7 +21,10 @@ async function loginService(user){
       const hashedPassword = password_row[0].employee_password;
       const isMatch = await bcrypt.compare(employee_password,hashedPassword);
       if(!isMatch){
-         return {isAuthenticated:false, message:"Incorrect password"}
+         return {
+				isAuthenticated: false,
+				message: "Invalid password. Please try again.", 
+			};
       }
       const jwtSecret = process.env.JWT_SECRET;
       const payload = {
@@ -41,7 +38,11 @@ async function loginService(user){
       }
    }
    catch(err){
-      console.log({message:"error occurs in login.service",err:err.message})
+      return {
+			isAuthenticated: false,
+			message: "An error occurred while logging in. Please try again later.",
+         error:err.message
+		};
    }
 
 

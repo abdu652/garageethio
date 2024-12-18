@@ -1,0 +1,29 @@
+ For now, we only need the navigation structure. which we have already identified.
+
+Navigation links in our app
+   Root level public pages
+   - Home page (/) - done!!
+   - About us page (/about)
+   - Services page (/services)
+   - contact us page (/contact)
+   - Admin page
+      Show only logged i, link to the dashboard (/dashboard)
+      - Login (/login)
+      - Order details (/order/{orderHash})
+         - not to be included in the menu
+      - Admin (Login required)
+      - Admin dashboard (/admin)
+      - Employees (/admin/employees)
+      - Add employee (/admin/add-employee)
+      - Edit employee(/admin/employee/edit/:id)
+      - Customers (/admin/customers)
+      - Add customers(/admin/add-customer)
+      - Edit customer (/admin/customer/edit:id)
+      - Customer detail (/admin/customer/
+      {customerId})
+      - Add vehicle (/admin/customer{customerId}) - conditionally display on the customer details page
+      - Orders (/admin/orders)
+      - Add order (/admin/order)
+      - Edit order (/admin/order/{orderHash}/edit)
+      - Services (/admin/services)
+      - Add service (/admin/admin-service)

@@ -17,6 +17,11 @@ body{
    flex-direction: column;
    /* height: 160px; */
    margin-bottom: 20px;
+   position: fixed;
+   top: 0;
+   z-index: 100;
+   left: 0;
+   right: 0;
 }
 .header-description{
    display: flex;
@@ -75,4 +80,7 @@ body{
    border-radius: 3px;
    cursor: pointer;
    color: white;
+}
+p{
+   color: black;
 }

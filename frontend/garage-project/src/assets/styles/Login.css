@@ -8,10 +8,17 @@ body{
 }
 
 .login-form{
+   background: rgba(0, 0, 0, 0.1);
+   border: 1px solid #f1f1f1;
+   width: 500px;
+   padding: 20px;
+   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+   border-radius: 10px;
    display: flex;
    flex-direction: column;
    gap: 12px;
    margin-left: 300px;
+   margin-top: 150px;
 }
 
 .login-form input, .login-button{
@@ -22,9 +29,28 @@ body{
    color: #f1f1f1;
    font-size: 17px;
    font-style: italic;
+   color: black;
+   /* background-color near to black */
+   background: #f1f1f1;
+   
 }
 
 .login-button{
-   color: white;
-   background: rgba(209, 19, 19, 0.822);
+   color: black;
+   background: rgba(0,0,0, 0.5);
+}
+
+.login-title{
+   background: rgba(0, 0, 0, 0.1);
+   color: rgba(0, 128, 0, 0.822);
+   font-style: italic;
+   border-radius: 5px;
+   padding: 10px;
+   width: 400px;
+}
+
+.field-message{
+   font-size: 16px;
+   /* make text color near to red */
+   color: rgba(209, 19, 19, 0.822);
 }

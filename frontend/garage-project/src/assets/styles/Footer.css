@@ -12,6 +12,10 @@ body{
    color: hsla(0, 19%, 89%, 0.87);
    padding-left: 40px;
    margin-top: 50px;
+   position: absolute;
+   bottom: 0;
+   top: 500px;
+   height: fit-content;
 }
 .contact-container{
    display: flex;
@@ -25,17 +29,24 @@ body{
    align-items: center;
 }
 
+.contact-img{
+   display: flex;
+   img{
+      width: 37px;
+   }
+}
+
 .contact{
    display: flex;
    flex-direction: column;
    p{
-      margin-top: 8px;
+      margin: 10px 0px 0px 10px;
    }
 }
 
 .service-container{
    display: flex;
-   justify-content: space-evenly;
+   justify-content: space-around;
    align-items: flex-start;
    line-height: 1.5;
    border-top: 1px solid rgba(128, 128, 128, 0.281);
@@ -63,4 +74,20 @@ body{
    padding: 12px 0px;
    /* margin-left: 30%; */
    border-top: 1px solid rgba(128, 128, 128, 0.281);
+}
+
+.icon-info{
+   padding-right: 70px;
+}
+.service-media-img{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   
+   img{
+      padding: 10px;
+      width: 40px;
+      border: 1px solid white;
+      border-radius: 50%;
+   }
 }

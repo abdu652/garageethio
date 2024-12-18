@@ -11,7 +11,7 @@ async function login(req,res){
 
    }catch(err){
       console.log({message:"error occurs in login.controller.",error:err.message})
-      res.json({
+      return res.json({
 			message: "error occurs in login.controller.",
 			error: err.message,
 		});

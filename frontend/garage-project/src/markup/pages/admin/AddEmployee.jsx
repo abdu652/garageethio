@@ -3,7 +3,7 @@ import AddEmployeeForm from '../../components/addEmployeeForm/AddEmployeeForm';
 import AdminMenu from '../../components/adminMenu/AdminMenu';
 function AddEmployee(){
    return(
-      <div>
+      <div className='add-employee-admin-container'>
          <AddEmployeeForm/>
          <AdminMenu/>
       </div>

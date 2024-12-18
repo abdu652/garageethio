@@ -1,0 +1,26 @@
+
+async function CreateEmployee(employee){
+   try{
+      const response = await fetch("http://localhost:3000/admin/add-employee",{
+            method:"POST",
+            headers:{
+               'Content-Type':'application/json'
+            },
+            body:JSON.stringify(employee)
+         });
+
+         if(response.ok){
+            const result = await response.json();
+            console.log("result in addemployee.service.jsx",result)
+            return result;
+         }
+         else{
+            return {error:response.statusText}
+         }
+}catch(err){
+   return {
+      error:err.message,
+   }
+}
+}
+export default CreateEmployee;

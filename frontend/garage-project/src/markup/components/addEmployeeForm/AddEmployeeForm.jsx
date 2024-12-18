@@ -1,17 +1,107 @@
-import React from "react";
+import {useState} from "react";
 import '../../../assets/styles/AddEmployee.css';
+import createEmployee  from "../../../services/AddEmployee.service";
 
 function AddEmployeeForm(){
-   return(
-      <form className="add-employee-form">
-         <input type="Employee email" placeholder="email" name="email"/>
-         <input type="text" placeholder="Employee first_name" name="first_name"/>
-         <input type="text" placeholder="Employee last_name" name="last_name"/>
-         <input type="phone" placeholder="Employee phone_number" name="phone_number"/>
-         <input type="" placeholder="" name=""/>
-         <input type="password" placeholder="password" name="password"/>
-         <button className="register-btn">Register</button>
-      </form>
-   )
+   const [employee, setEmployee] = useState({
+      employee_email: "",
+      employee_first_name: "",
+      employee_last_name: "",
+      employee_phone_number: "",
+      employee_password:"",
+		company_role_id:1
+   });
+	const [responseMessage,setResponseMessage] = useState("");
+   function handleChange(e){
+		const {value, name} = e.target;
+		setEmployee((prev)=>{
+			return {...prev, [name]:value};
+		})
+   }
+	const {employee_email,employee_first_name,employee_last_name,employee_phone_number,employee_password,company_role_id} = employee;
+   async function handleSubmit(e){
+		try{
+			
+			e.preventDefault();
+			if(!employee_email || !employee_first_name || !employee_last_name || !employee_password || !employee_phone_number){
+				setResponseMessage("Fill all fields first!");
+				return;
+			}else{setResponseMessage("")}
+
+			const response = createEmployee(employee);
+			const {error, message} = response;
+
+			if(error){
+				setResponseMessage(error);
+				return
+			}
+			setResponseMessage(message);
+			   setEmployee({
+					employee_email: "",
+					employee_first_name: "",
+					employee_last_name: "",
+					employee_phone_number: "",
+					employee_password: "",
+					company_role_id:1
+				});
+		}catch(err){
+			setResponseMessage(err.message)
+		}
+   }
+	
+   return (
+		<form
+			className="add-employee-form"
+			onSubmit={handleSubmit}
+			method="POST"
+			action="/admin/add-employee">
+				{responseMessage && <h1 className="error-message">{responseMessage}</h1>}
+			<input
+				type="Employee email"
+				placeholder="email"
+				name="employee_email"
+				value={employee_email}
+				onChange={handleChange}
+			/>
+			<input
+				type="text"
+				placeholder="Employee first_name"
+				name="employee_first_name"
+				value={employee_first_name}
+				onChange={handleChange}
+			/>
+			<input
+				type="text"
+				placeholder="Employee last_name"
+				name="employee_last_name"
+				value={employee_last_name}
+				onChange={handleChange}
+			/>
+			<input
+				type="text"
+				placeholder="Employee phone_number"
+				name="employee_phone_number"
+				value={employee_phone_number}
+				onChange={handleChange}
+			/>
+			<select
+				value={company_role_id}
+				name="company_role_id"
+				onChange={handleChange} //event=>setCompanyRoleId(event.target.value)
+			>
+				<option value={1}>Admin</option>
+				<option value={2}>Manager</option>
+				<option value={3}>Employee</option>
+			</select>
+			<input
+				type="password"
+				placeholder="password"
+				name="employee_password"
+				value={employee_password}
+				onChange={handleChange}
+			/>
+			<button className="register-btn">Register</button>
+		</form>
+	);
 }
 export default AddEmployeeForm;
