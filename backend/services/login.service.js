@@ -6,14 +6,12 @@ dotenv.config();
 async function loginService(user){
    try{
       const {employee_email, employee_password} = user;
-      console.log(user)
       const sql= 'select employee_id from employee where employee_email =?';
       const rows = await query(sql,[employee_email]);
       if(!rows.length){
          return  {
-            message:"User not found. please register first!",
+            message:"User not found",
             isAuthenticated:false,
-            err:"no error"
          }
       }
       const {employee_id} = rows[0];
@@ -45,12 +43,9 @@ async function loginService(user){
    catch(err){
       return {
 			isAuthenticated: false,
-			message: "An error occurred while login",
-         error:err.message
+         message:err.message
 		};
    }
-
-
 }
 
 export default loginService;

@@ -13,7 +13,7 @@ async function login(req,res){
       console.log({message:"error occurs in login.controller.",error:err.message})
       return res.json({
 			message: "error occurs in login.controller.",
-			error: err.message,
+			message: err.message,
 		});
    }
       
