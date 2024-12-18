@@ -15,7 +15,7 @@ async function CreateEmployee(employee){
             return result;
          }
          else{
-            return {error:response.statusText}
+            return {error:`Resource not found!`}
          }
 }catch(err){
    return {

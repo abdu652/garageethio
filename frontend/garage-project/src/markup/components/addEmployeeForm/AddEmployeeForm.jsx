@@ -28,13 +28,14 @@ function AddEmployeeForm(){
 				return;
 			}else{setResponseMessage("")}
 
-			const response = createEmployee(employee);
+			const response = await createEmployee(employee);
 			const {error, message} = response;
 
 			if(error){
 				setResponseMessage(error);
 				return
 			}
+			console.log("message in employee.jsx",message)
 			setResponseMessage(message);
 			   setEmployee({
 					employee_email: "",
@@ -44,11 +45,11 @@ function AddEmployeeForm(){
 					employee_password: "",
 					company_role_id:1
 				});
+				
 		}catch(err){
 			setResponseMessage(err.message)
 		}
    }
-	
    return (
 		<form
 			className="add-employee-form"

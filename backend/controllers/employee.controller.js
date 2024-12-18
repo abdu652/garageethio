@@ -15,7 +15,7 @@ async function employeeController(req,res){
       if (result) {
          res.status(200).json({
             success: "true",
-            message: "you are registered succesfully.",
+            message: "registered succesfull.",
             data:{...employeeData, employee_password:undefined}
          });
       } 
