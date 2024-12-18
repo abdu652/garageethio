@@ -6,6 +6,7 @@ dotenv.config();
 async function loginService(user){
    try{
       const {employee_email, employee_password} = user;
+      console.log(user)
       const sql= 'select employee_id from employee where employee_email =?';
       const rows = await query(sql,[employee_email]);
       if(!rows.length){
@@ -23,12 +24,16 @@ async function loginService(user){
       if(!isMatch){
          return {
 				isAuthenticated: false,
-				message: "Invalid password. Please try again.", 
+				message: "Incorrect password", 
 			};
       }
+      const nameQuery = 'select employee_first_name from employee_info where employee_id =?';
+      const nameRows =await query(nameQuery,[employee_id]);
+      const {employee_first_name} = nameRows[0];
       const jwtSecret = process.env.JWT_SECRET;
       const payload = {
-         employee_id
+         employee_id,
+         employee_first_name
       }
       const token = jwt.sign(payload,jwtSecret);
       return {
@@ -40,7 +45,7 @@ async function loginService(user){
    catch(err){
       return {
 			isAuthenticated: false,
-			message: "An error occurred while logging in. Please try again later.",
+			message: "An error occurred while login",
          error:err.message
 		};
    }
