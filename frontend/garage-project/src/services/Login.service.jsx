@@ -19,7 +19,7 @@ async function Login(loginForm){
       const result = await response.json();
       const {isAuthenticated, token} = result;
       if(isAuthenticated){
-         localStorage.setItem("employee",JSON.stringify(token))
+         token && localStorage.setItem("employee",JSON.stringify(token))
          return result;            
       }else{
          return result

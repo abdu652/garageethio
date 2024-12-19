@@ -31,7 +31,6 @@ function Login() {
 			}
 			// console.log("hi")
 			const result = await VerifyUser(loginForm);
-			console.log("the response value is:",result)
 			const {message} = result;
 			setFieldMessage(message);
 		}
