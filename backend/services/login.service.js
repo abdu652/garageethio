@@ -33,9 +33,9 @@ async function loginService(user){
       const employee_role = rolerows[0].company_role_id;
       const jwtSecret = process.env.JWT_SECRET;
       const payload = {
-         employee_id,
-         employee_first_name,
-         employee_role
+         employeeId:employee_id,
+         employeeFirstName:employee_first_name,
+         employeeRole:employee_role
       }
       const token = jwt.sign(payload,jwtSecret);
       return {

@@ -16,12 +16,12 @@ function AuthProvider({children}){
    useEffect(()=>{
       async function fetchData() {
       const loggedInEmployee = await Auth();
-      const {employee_role} = loggedInEmployee;   
+      const {employeeRole} = loggedInEmployee;   
       if(loggedInEmployee){
          setEmployee(loggedInEmployee)
          setIsLoggedIn(true);
       }
-      if(employee_role === 1){
+      if(employeeRole === 1){
          setIsAdmin(true)
       }
    }
