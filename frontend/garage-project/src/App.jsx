@@ -5,12 +5,10 @@
  import AddEmployee from './markup/pages/admin/AddEmployee';
  import Header from './markup/components/header/Header';
  import Footer from './markup/components/footer/Footer';
- import AuthContext from './context/AuthContext.jsx';
  function App(){
   return(
     <div>
       <Header/>
-      <AuthContext/>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login/>} />   

@@ -1,21 +1,22 @@
 import Auth from '../utils/Auth.jsx';
-import { useState, useContext, useEffect, createContext, Children } from 'react';
+import React, { useState, useContext, useEffect} from 'react';
 // import './AuthContext.css'
-const AuthContext = createContext();
+const AuthContext = React.createContext()
 
-export useAuth = ()=>{
+export function useAuth(){
    return useContext(AuthContext);
 }
 
-async function AuthProvider(){
-   const loggedInEmployee = await Auth();
-   const {employee_role} = loggedInEmployee;   
+function AuthProvider({children}){
    const [isLoggedIn, setIsLoggedIn] = useState(false);
    const [isAdmin, setIsAdmin] = useState(false);
    const [employee, setEmployee] =useState(null);
    const value = {isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin,employee }
    
    useEffect(()=>{
+      async function fetchData() {
+      const loggedInEmployee = await Auth();
+      const {employee_role} = loggedInEmployee;   
       if(loggedInEmployee){
          setEmployee(loggedInEmployee)
          setIsLoggedIn(true);
@@ -23,10 +24,12 @@ async function AuthProvider(){
       if(employee_role === 1){
          setIsAdmin(true)
       }
+   }
+   fetchData()
    },[])
    return (
       <AuthContext.Provider value ={value}>
-         {Children}
+         {children}
       </AuthContext.Provider>
    )
 }
