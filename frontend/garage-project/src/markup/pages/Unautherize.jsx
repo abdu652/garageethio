@@ -1,13 +1,14 @@
-import getAuth from '../../utils/Auth.jsx';
-const Unauthorized = ()=>{
-   const {employee} = getAuth();
 
-   console.log(employee)
+const Unauthorized = ()=>{  
    return (
-      <div>
+      <div style={{textAlign:'center',color:'red',marginTop:'100px'}}>
          <h1>Unauthorized</h1>
-         <p>You are not authorized to view this page</p>
+         <p style={{color:'green'}}>You are not authorized to view this page</p>
       </div>    
    )
 }
 export default Unauthorized;
+
+
+
+

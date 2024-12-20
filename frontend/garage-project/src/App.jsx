@@ -5,7 +5,8 @@
  import AddEmployee from './markup/pages/admin/AddEmployee';
  import Header from './markup/components/header/Header';
  import Footer from './markup/components/footer/Footer';
- import Unautherized from './markup/pages/Unautherized.jsx';
+ import Unautherized from './markup/pages/Unautherize.jsx';
+ import PrivateAuthRoute from './markup/components/Auth/PrivateAuthRoute.jsx';
  function App(){
   return(
     <div>
@@ -14,7 +15,11 @@
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login/>} />   
         <Route path='/unautherized' element={<Unautherized/>} />   
-        <Route path='/admin/add-employee' element={<AddEmployee/>} />
+       < Route path='/admin/add-employee' element = {
+          <PrivateAuthRoute roles={[1]}>
+            {<AddEmployee />}
+          </PrivateAuthRoute>
+       }/>
       </Routes>
       <Footer/>
     </div>

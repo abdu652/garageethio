@@ -3,16 +3,17 @@ import "../../assets/styles/Login.css";
 import VerifyUser from '../../services/Login.service.jsx';
 import { useNavigate } from "react-router-dom"; 
 import { useAuth } from "../../context/AuthContext.jsx";
-const {isLoggedIn} = useAuth;
-console.log(isLoggedIn)
 function Login() {
+	const response = useAuth();
+	console.log(response);
+	console.log(response.isLoggedIn);
 	const [fieldMessage, setFieldMessage] = useState("");
 	const navigate = useNavigate();
 	const [loginForm, setLoginForm] = useState({
 		employee_email: "",
 		employee_password: "",
 	});
-
+	
 	// Handle input field changes
 	function handleChange(e) {
 		setFieldMessage("");
