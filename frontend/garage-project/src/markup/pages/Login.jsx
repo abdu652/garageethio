@@ -1,9 +1,13 @@
 import { useState } from "react";
 import "../../assets/styles/Login.css";
 import VerifyUser from '../../services/Login.service.jsx';
-
+import { useNavigate } from "react-router-dom"; 
+import { useAuth } from "../../context/AuthContext.jsx";
+const {isLoggedIn} = useAuth;
+console.log(isLoggedIn)
 function Login() {
 	const [fieldMessage, setFieldMessage] = useState("");
+	const navigate = useNavigate();
 	const [loginForm, setLoginForm] = useState({
 		employee_email: "",
 		employee_password: "",
@@ -59,7 +63,11 @@ function Login() {
 				onChange={handleChange}
 				required
 			/>
-			<button type="submit" className="login-button">
+			<button type="submit" className="login-button" onClick={()=>{
+				if(isLoggedIn){
+					navigate('/')
+				}
+				}}>
 				Login
 			</button>
 		</form>
