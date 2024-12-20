@@ -16,8 +16,6 @@ function AuthProvider({ children }) {
 	useEffect(() => {
 		async function fetchData() {
 			const loggedInEmployee = await Auth();
-			console.log("loggedInEmployee:", loggedInEmployee);
-
 			// Explicitly check if `loggedInEmployee` is not null/undefined and has the required property
 			if (loggedInEmployee && Object.keys(loggedInEmployee).length > 0) {
 				setEmployee(loggedInEmployee);

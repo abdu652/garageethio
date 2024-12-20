@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
 function Login() {
 	const response = useAuth();
-	console.log(response);
-	console.log(response.isLoggedIn);
 	const [fieldMessage, setFieldMessage] = useState("");
 	const navigate = useNavigate();
 	const [loginForm, setLoginForm] = useState({
@@ -34,7 +32,6 @@ function Login() {
 				setFieldMessage("Please fill in all fields.");
 				return;
 			}
-			// console.log("hi")
 			const result = await VerifyUser(loginForm);
 			const {message} = result;
 			setFieldMessage(message);

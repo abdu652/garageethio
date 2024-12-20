@@ -11,16 +11,15 @@ useEffect(() => {
    const validateUser = async () => {
       try {
          const employee = await getAuth();
-         console.log(employee);
          if (employee && Object.keys(employee).length > 0) {
             setIsLoggedIn(true);
-            if (roles && roles.includes(employee.employeeRole)) {
+            if (roles.length >0 && roles.includes(employee.employeeRole)) {
                setIsVerified(true);
             }
          }
       } 
       catch (err) {
-         console.error("Error during authentication:", err);
+         console.error("Error during authentication at the privateAuthRoute:", err.message);
       } 
       finally {
          setIsChecked(true);
