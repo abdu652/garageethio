@@ -7,6 +7,7 @@
  import Footer from './markup/components/footer/Footer';
  import Unautherized from './markup/pages/Unautherize.jsx';
  import PrivateAuthRoute from './markup/components/Auth/PrivateAuthRoute.jsx';
+ import Employees from './markup/pages/admin/Employees.jsx';
  function App(){
   return(
     <div>
@@ -18,6 +19,11 @@
        < Route path='/admin/add-employee'  element = {
           <PrivateAuthRoute roles={[1]}>
             {<AddEmployee />}
+          </PrivateAuthRoute>
+       }/>
+       <Route path = 'admin/employees' element = {
+          <PrivateAuthRoute roles={[1]}>
+            {<Employees />}
           </PrivateAuthRoute>
        }/>
       </Routes>
