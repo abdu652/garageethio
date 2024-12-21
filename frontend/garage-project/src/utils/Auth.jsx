@@ -3,7 +3,7 @@ async function Auth(){
    const parsedData =await  JSON.parse(localStorage.getItem("employee"));
    if(parsedData){
       const decodedData = jwtDecode(parsedData);
-      return decodedData;
+      return {...decodedData, token:parsedData};
    }       
    else return {}  
 }

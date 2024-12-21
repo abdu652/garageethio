@@ -15,7 +15,7 @@
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login/>} />   
         <Route path='/unautherized' element={<Unautherized/>} />   
-       < Route path='/admin/add-employee' element = {
+       < Route path='/admin/add-employee'  element = {
           <PrivateAuthRoute roles={[1]}>
             {<AddEmployee />}
           </PrivateAuthRoute>

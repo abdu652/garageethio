@@ -4,7 +4,6 @@ async function login(req,res){
       const user = req.body;
       const loginMessage = await loginService(user);
          res.status(200).json(loginMessage);
-         // console.log(loginMessage)
    }catch(err){
       return res.json({
 			message: err.message,

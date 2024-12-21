@@ -1,6 +1,7 @@
 import {useState} from "react";
 import '../../../assets/styles/AddEmployee.css';
 import createEmployee  from "../../../services/AddEmployee.service";
+import storedTokenfrom from '../../../utils/Auth.jsx';
 
 function AddEmployeeForm(){
    const [employee, setEmployee] = useState({
@@ -9,7 +10,7 @@ function AddEmployeeForm(){
       employee_last_name: "",
       employee_phone_number: "",
       employee_password:"",
-		company_role_id:1
+		company_role_id:3
    });
 	const [responseMessage,setResponseMessage] = useState("");
    function handleChange(e){
@@ -23,12 +24,12 @@ function AddEmployeeForm(){
 		try{
 			
 			e.preventDefault();
+			const {token} = await storedTokenfrom();
 			if(!employee_email || !employee_first_name || !employee_last_name || !employee_password || !employee_phone_number){
 				setResponseMessage("Fill all fields first!");
 				return;
 			}else{setResponseMessage("")}
-
-			const response = await createEmployee(employee);
+			const response = await createEmployee(employee, token);
 			const {error, message} = response;
 
 			if(error){
@@ -43,7 +44,7 @@ function AddEmployeeForm(){
 					employee_last_name: "",
 					employee_phone_number: "",
 					employee_password: "",
-					company_role_id:1
+					company_role_id:3
 				});
 				
 		}catch(err){
@@ -88,7 +89,7 @@ function AddEmployeeForm(){
 			<select
 				value={company_role_id}
 				name="company_role_id"
-				onChange={handleChange} //event=>setCompanyRoleId(event.target.value)
+				onChange={handleChange} 
 			>
 				<option value={1}>Admin</option>
 				<option value={2}>Manager</option>
