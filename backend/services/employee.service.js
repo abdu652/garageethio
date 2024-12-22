@@ -49,3 +49,16 @@ export async function createEmployee(employeeData){
       }
    }
 }
+
+export async function getAllEmployee(){
+   try{
+      const getQuery = 'select * from employee inner join employee_info on employee.employee_id = employee_info.employee_id inner join employee_role on employee.employee_id = employee_role.employee_id inner join company_roles on employee_role.company_role_id = company_roles.company_role_id';
+      const employees = await employeeQuery(getQuery,[]);      
+      return employees;
+   }catch(err){
+      return {
+         success:false, 
+         error:err.message
+   }
+}
+}

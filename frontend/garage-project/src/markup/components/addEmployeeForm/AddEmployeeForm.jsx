@@ -1,6 +1,6 @@
 import {useState} from "react";
 import '../../../assets/styles/AddEmployee.css';
-import createEmployee  from "../../../services/AddEmployee.service";
+import createEmployee  from "../../../services/AddEmployee.service.jsx";
 import storedTokenfrom from '../../../utils/Auth.jsx';
 
 function AddEmployeeForm(){

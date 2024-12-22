@@ -1,0 +1,33 @@
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+body{
+   font-family: Arial, sans-serif;
+   background: #f0f8ff;
+   color: #333;
+}
+.employee-list{
+   margin-top: 110px;
+   margin-left: 300px;
+   color: #333;
+}
+.employee-table{
+   width: 100%;
+}
+.employee-column, .employee-row{
+   /* give back-color near to white */
+   background: rgba(207, 203, 203, 0.116);
+   border: 1px solid #e5e4e2;
+   border-radius: 5px;
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+.employee-row{
+   background: #a9a9a97a;
+}
+th, td{
+   border: 1px solid rgba(209, 209, 209, 0.315);
+   padding:10px;
+}
